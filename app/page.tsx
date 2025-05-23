@@ -1,11 +1,11 @@
 "use client";
 
-import Card from "@/components/Card";
 import CpuInfo from "@/components/dashboard/CpuInfo";
 import MemInfo from "@/components/dashboard/MemInfo";
 import { NetworkInfo } from "@/components/dashboard/NetworkInfo";
 import SysInfo from "@/components/dashboard/SysInfo";
 import Container from "@/components/layout/Container";
+import Card from "@/components/ui/Card";
 
 const DashboardPage = () => {
   return (

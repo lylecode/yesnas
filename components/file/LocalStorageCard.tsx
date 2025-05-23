@@ -1,5 +1,5 @@
 import { IconType } from "react-icons";
-import { ProgressBar } from "../ProgressBar";
+import { ProgressBar } from "../ui/ProgressBar";
 
 interface Props {
   title: string;
