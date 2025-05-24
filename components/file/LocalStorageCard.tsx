@@ -1,5 +1,5 @@
 import { IconType } from "react-icons";
-import { ProgressBar } from "../ui/ProgressBar";
+import { UIProgressBar } from "../ui/UIProgressBar";
 
 interface Props {
   title: string;
@@ -14,7 +14,7 @@ const LocalStorageCard = ({ title, available, total, icon: Icon }: Props) => {
       <ul className="flex flex-col gap-2">
         <li className="font-medium">{title}</li>
         <li>
-          <ProgressBar />
+          <UIProgressBar />
         </li>
         <li className="text-xs">
           {available.toFixed(2)} GB 可用，共 {total.toFixed(2)} GB

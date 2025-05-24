@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 import { Checkbox } from "@heroui/react";
 import { BsDeviceHdd } from "react-icons/bs";
-import Panel from "../ui/Panel";
+import Panel from "../ui/UIPanel";
 
 interface Props {
   label: string;
@@ -43,7 +43,10 @@ const DiskCard = ({
           </div>
         </div>
         <div className="flex items-center gap-3 text-sm">
-          <BsDeviceHdd className="flex flex-1 text-4xl" />
+          <span className="rounded-full bg-gray-100 p-3 text-4xl">
+            <BsDeviceHdd className="flex flex-1 text-2xl" />
+          </span>
+
           <div className="h-f h-full w-[1px] bg-gray-200" />
           <div className="flex flex-1 flex-col items-center gap-1">
             <span className="text-neutral-500">Total</span>
@@ -61,7 +64,8 @@ const DiskCard = ({
           </div>
           <div className="h-f h-full w-[1px] bg-gray-200" />
           <div className="flex flex-1 flex-col items-center gap-1">
-            <span className="text-neutral-500">状态</span> <span>{status}</span>
+            <span className="text-neutral-500">状态</span>{" "}
+            <span className="text-blue-500">{status}</span>
           </div>
         </div>
       </div>

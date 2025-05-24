@@ -7,14 +7,14 @@ import {
   TableHeader,
   TableRow,
 } from "@heroui/react";
-import ModalView from "../ui/Modal";
 import UIButton from "../ui/UIButton";
+import ModalView from "../ui/UIModal";
 interface Props {
   onClose?: () => void;
   isOpen?: boolean;
 }
 
-const SpeedTest = ({ isOpen = false, onClose }: Props) => {
+const SpeedTestModal = ({ isOpen = false, onClose }: Props) => {
   return (
     <ModalView isOpen={isOpen} onClose={onClose} title="测速" size="3xl">
       <div className="flex justify-end">
@@ -58,4 +58,4 @@ const SpeedTest = ({ isOpen = false, onClose }: Props) => {
   );
 };
 
-export default SpeedTest;
+export default SpeedTestModal;

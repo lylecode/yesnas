@@ -5,7 +5,7 @@ import { RxDashboard } from "react-icons/rx";
 const Menu = () => {
   return (
     <nav className="flex h-full flex-col border-gray-100">
-      <div className="flex flex-1 flex-col gap-6 border-r border-gray-200 px-7 py-8">
+      <div className="flex flex-1 flex-col gap-6 px-7 py-8">
         <Link
           href="/"
           className="ml-[-6] flex items-center gap-2 rounded-md border-black p-2 pl-2 text-neutral-600 hover:bg-indigo-50 hover:text-neutral-950"

@@ -7,7 +7,7 @@ interface Props {
   span?: 1 | 2 | 3;
 }
 
-const Card = ({ children, title, className, span }: Props) => {
+const UICard = ({ children, title, className, span }: Props) => {
   const spanClass = cn({
     "md:col-span-2": span === 2,
     "md:col-span-3": span === 3,
@@ -30,4 +30,4 @@ const Card = ({ children, title, className, span }: Props) => {
   );
 };
 
-export default Card;
+export default UICard;

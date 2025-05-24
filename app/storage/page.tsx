@@ -1,14 +1,18 @@
 "use client";
-import SpeedTest from "@/components/dashboard/SpeedTest";
 import Container from "@/components/layout/Container";
 import DiskCard from "@/components/storage/DiskCard";
-import Panel from "@/components/ui/Panel";
-import { ProgressBar } from "@/components/ui/ProgressBar";
+import SpeedTestModal from "@/components/storage/SpeedTestModal";
+import StorageInfoModal from "@/components/storage/StorageInfoModal";
 import UIButton from "@/components/ui/UIButton";
+import Panel from "@/components/ui/UIPanel";
+import { UIProgressBar } from "@/components/ui/UIProgressBar";
 import { Tab, Tabs, useDisclosure } from "@heroui/react";
 import { useState } from "react";
+import { BsFillCassetteFill } from "react-icons/bs";
 const StoragePage = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpenSpeedTestModal, setIsOpenSpeedTestModal] = useState(false);
+  const [isOpenStorageInfoModal, setIsOpenStorageInfoModal] = useState(false);
+
   const [disks, setDisks] = useState([
     {
       label: "数据盘",
@@ -58,7 +62,15 @@ const StoragePage = () => {
     console.log(
       "测速设备：",
       selectedDisks.map((d) => d.device),
-      setIsOpen(true),
+      setIsOpenSpeedTestModal(true),
+    );
+  };
+
+  const handleStorageInfo = () => {
+    console.log(
+      "测速设备：",
+      selectedDisks.map((d) => d.device),
+      setIsOpenStorageInfoModal(true),
     );
   };
 
@@ -70,16 +82,16 @@ const StoragePage = () => {
   };
   const { onOpen } = useDisclosure();
   return (
-    <Container>
-      <h2>存储空间</h2>
+    <Container title="存储空间">
       <Panel title="未使用的磁盘" className="flex flex-col gap-4 border-none">
         <div className="flex items-center justify-between">
           <Tabs
+            variant="underlined"
             aria-label="Options"
             selectedKey={selectedKey}
             onSelectionChange={(key) => setSelectedKey(key as string)}
             classNames={{
-              tabList: "flex-nowrap",
+              tabList: "flex-nowrap m-0 p-0",
             }}
           >
             <Tab key="未使用" title="未使用" />
@@ -90,13 +102,16 @@ const StoragePage = () => {
           <div className="flex gap-3">
             <UIButton
               variant="bordered"
+              radius="sm"
               isDisabled={!isAnyDiskSelected}
+              color="default"
               onPress={handleSpeedTest}
             >
               测速
             </UIButton>
             <UIButton
               isDisabled={!isAnyDiskSelected}
+              radius="sm"
               onPress={handleCreateStorage}
             >
               创建存储空间
@@ -104,14 +119,16 @@ const StoragePage = () => {
           </div>
         </div>
 
-        <div>
+        <div className="">
           {selectedKey === "未使用" && (
             <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
               {disks.map((disk, index) => (
                 <DiskCard
                   key={index}
                   className={
-                    disk.checked ? "border-blue-400 shadow-lg" : undefined
+                    disk.checked
+                      ? "border-blue-400 bg-blue-50 shadow-sm"
+                      : undefined
                   }
                   {...disk}
                   onCheck={(checked) => handleCheck(index, checked)}
@@ -130,49 +147,30 @@ const StoragePage = () => {
           <Panel className="flex w-60 text-sm">
             <div className="flex flex-row items-center justify-between">
               <span className="font-medium">电影</span>
-              <span>RAID0</span>
+              <UIButton onPress={handleStorageInfo} variant="flat">
+                <BsFillCassetteFill className="text-lg" />
+              </UIButton>
             </div>
             <div>
               <div className="mb-1 flex flex-row items-center justify-between text-xs">
                 <span>5%</span>
                 <span>23.22 GB / 239.00 GB</span>
               </div>
-              <ProgressBar />
-            </div>
-            <div className="text-blue-500">正常</div>
-          </Panel>
-          <Panel className="flex w-60 text-sm">
-            <div className="flex flex-row items-center justify-between">
-              <span className="font-medium">电影</span>
-              <span>RAID0</span>
-            </div>
-            <div>
-              <div className="mb-1 flex flex-row items-center justify-between text-xs">
-                <span>5%</span>
-                <span>23.22 GB / 239.00 GB</span>
-              </div>
-              <ProgressBar />
-            </div>
-            <div className="text-blue-500">正常</div>
-          </Panel>
-          <Panel className="flex w-60 text-sm">
-            <div className="flex flex-row items-center justify-between">
-              <span className="font-medium">电影</span>
-              <span>RAID0</span>
-            </div>
-            <div>
-              <div className="mb-1 flex flex-row items-center justify-between text-xs">
-                <span>5%</span>
-                <span>23.22 GB / 239.00 GB</span>
-              </div>
-              <ProgressBar />
+              <UIProgressBar />
             </div>
             <div className="text-blue-500">正常</div>
           </Panel>
         </div>
       </Panel>
       {/* SpeedTest */}
-      <SpeedTest isOpen={isOpen} onClose={() => setIsOpen(false)} />
+      <SpeedTestModal
+        isOpen={isOpenSpeedTestModal}
+        onClose={() => setIsOpenSpeedTestModal(false)}
+      />
+      <StorageInfoModal
+        isOpen={isOpenStorageInfoModal}
+        onClose={() => setIsOpenStorageInfoModal(false)}
+      />
     </Container>
   );
 };

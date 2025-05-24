@@ -1,5 +1,4 @@
 import {
-  Button,
   Modal,
   ModalBody,
   ModalContent,
@@ -17,7 +16,7 @@ interface Props {
   onClose?: () => void;
   isOpen?: boolean;
 }
-const ModalView = ({
+const UIModalView = ({
   isOpen = false,
   title = "Modal Title",
   footerButtons,
@@ -35,26 +34,21 @@ const ModalView = ({
         isOpen={isOpen}
         onOpenChange={onClose}
         classNames={{
-          closeButton: "cursor-pointer",
+          closeButton: "cursor-pointer text-xl text-black mt-2 mr-3",
         }}
         {...restProps}
       >
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader {...moveProps} className="flex flex-col gap-1">
+              <ModalHeader
+                {...moveProps}
+                className="flex flex-col gap-1 border-b border-gray-100"
+              >
                 {title}
               </ModalHeader>
               <ModalBody>{children}</ModalBody>
-              <ModalFooter>
-                {footerButtons || (
-                  <>
-                    <Button color="danger" variant="light" onPress={onClose}>
-                      关闭
-                    </Button>
-                  </>
-                )}
-              </ModalFooter>
+              <ModalFooter> {footerButtons || "\u00A0"}</ModalFooter>
             </>
           )}
         </ModalContent>
@@ -63,4 +57,4 @@ const ModalView = ({
   );
 };
 
-export default ModalView;
+export default UIModalView;

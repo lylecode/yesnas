@@ -5,7 +5,7 @@ interface Props {
   children: React.ReactNode;
   className?: string;
 }
-const Panel = ({ title, className, children }: Props) => {
+const UIPanel = ({ title, className, children }: Props) => {
   return (
     <div
       className={cn(
@@ -19,4 +19,4 @@ const Panel = ({ title, className, children }: Props) => {
   );
 };
 
-export default Panel;
+export default UIPanel;
