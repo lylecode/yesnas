@@ -7,8 +7,8 @@ import {
   ModalProps,
   useDisclosure,
   useDraggable,
-} from "@heroui/react";
-import { useRef } from "react";
+} from '@heroui/react';
+import { useRef } from 'react';
 interface Props {
   title?: string;
   footerButtons?: React.ReactNode;
@@ -18,7 +18,7 @@ interface Props {
 }
 const UIModalView = ({
   isOpen = false,
-  title = "Modal Title",
+  title = 'Modal Title',
   footerButtons,
   onClose,
   children,
@@ -33,22 +33,38 @@ const UIModalView = ({
         ref={targetRef}
         isOpen={isOpen}
         onOpenChange={onClose}
-        classNames={{
-          closeButton: "cursor-pointer text-xl text-black mt-2 mr-3",
+        motionProps={{
+          variants: {
+            enter: {
+              y: 0,
+              opacity: 1,
+              transition: {
+                duration: 0.3,
+                ease: 'easeOut',
+              },
+            },
+            exit: {
+              y: -20,
+              opacity: 0,
+              transition: {
+                duration: 0.2,
+                ease: 'easeIn',
+              },
+            },
+          },
         }}
-        {...restProps}
-      >
+        classNames={{
+          closeButton: 'cursor-pointer text-xl text-black mt-2 mr-3',
+        }}
+        {...restProps}>
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader
-                {...moveProps}
-                className="flex flex-col gap-1 border-b border-gray-100"
-              >
+              <ModalHeader {...moveProps} className="flex flex-col gap-1 border-b border-gray-100">
                 {title}
               </ModalHeader>
               <ModalBody>{children}</ModalBody>
-              <ModalFooter> {footerButtons || "\u00A0"}</ModalFooter>
+              <ModalFooter> {footerButtons || '\u00A0'}</ModalFooter>
             </>
           )}
         </ModalContent>

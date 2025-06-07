@@ -1,0 +1,15 @@
+model Storage {
+  id        String      @id @default(uuid())
+  name      String
+  uuid      String?
+  type      StorageType
+  device    String
+  createdAt DateTime    @default(now())
+}
+
+enum StorageType {
+  RAID0
+  RAID1
+  RAID2
+  DISK
+}

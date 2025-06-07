@@ -1,33 +1,33 @@
-import LocalDirCard from "@/components/file/LocalDirCard";
-import LocalStorageCard from "@/components/file/LocalStorageCard";
-import NetworkStorageCard from "@/components/file/NetworkStorageCard";
-import Container from "@/components/layout/Container";
-import { CiMusicNote1 } from "react-icons/ci";
-import { GiFilmSpool } from "react-icons/gi";
-import { PiFileDocLight } from "react-icons/pi";
+import LocalDirCard from '@/components/file/LocalDirCard';
+import LocalStorageCard from '@/components/file/LocalStorageCard';
+import NetworkStorageCard from '@/components/file/NetworkStorageCard';
+import Container from '@/components/layout/Container';
+import { CiMusicNote1 } from 'react-icons/ci';
+import { GiFilmSpool } from 'react-icons/gi';
+import { PiFileDocLight } from 'react-icons/pi';
 
 const FilePage = () => {
   const localDir = [
     {
-      title: "视频",
+      title: '视频',
       size: 128,
       icon: GiFilmSpool,
       progress: 65,
     },
     {
-      title: "图片",
+      title: '图片',
       size: 42,
       icon: PiFileDocLight,
       progress: 30,
     },
     {
-      title: "文档",
+      title: '文档',
       size: 42,
       icon: PiFileDocLight,
       progress: 30,
     },
     {
-      title: "音频",
+      title: '音频',
       size: 18,
       icon: CiMusicNote1,
       progress: 15,
@@ -35,7 +35,7 @@ const FilePage = () => {
   ];
   const localStorage = [
     {
-      title: "视频",
+      title: '视频',
       size: 128,
       icon: GiFilmSpool,
       progress: 65,
@@ -43,7 +43,7 @@ const FilePage = () => {
       total: 200,
     },
     {
-      title: "图片",
+      title: '图片',
       size: 42,
       icon: PiFileDocLight,
       progress: 30,
@@ -53,13 +53,13 @@ const FilePage = () => {
   ];
   const networkStorage = [
     {
-      title: "视频",
-      address: "192.168.168.1",
+      title: '视频',
+      address: '192.168.168.1',
       icon: GiFilmSpool,
     },
     {
-      title: "百度",
-      address: "http://www.baidu.com",
+      title: '百度',
+      address: 'http://www.baidu.com',
       icon: GiFilmSpool,
     },
   ];
@@ -68,35 +68,19 @@ const FilePage = () => {
       <h2>本地文件</h2>
       <div className="flex flex-wrap gap-4 rounded-lg border border-gray-200 bg-white">
         {localDir.map((m) => (
-          <LocalDirCard
-            key={m.title}
-            title={m.title}
-            size={m.size}
-            icon={m.icon}
-          />
+          <LocalDirCard key={m.title} title={m.title} size={m.size} icon={m.icon} />
         ))}
       </div>
       <h2 className="mt-12">存储空间</h2>
       <div className="flex gap-4">
         {localStorage.map((m) => (
-          <LocalStorageCard
-            key={m.title}
-            title={m.title}
-            available={m.available}
-            total={m.total}
-            icon={m.icon}
-          />
+          <LocalStorageCard key={m.title} title={m.title} available={m.available} total={m.total} icon={m.icon} />
         ))}
       </div>
-      <h2 className="mt-12">网络位置</h2>{" "}
+      <h2 className="mt-12">网络位置</h2>{' '}
       <div className="flex gap-4">
         {networkStorage.map((m) => (
-          <NetworkStorageCard
-            key={m.title}
-            title={m.title}
-            address={m.address}
-            icon={m.icon}
-          />
+          <NetworkStorageCard key={m.title} title={m.title} address={m.address} icon={m.icon} />
         ))}
       </div>
     </Container>

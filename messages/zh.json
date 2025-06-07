@@ -1,0 +1,9 @@
+{
+  "Global": {
+    "emptyData": "无任何数据",
+    "loading": "加载中..."
+  },
+  "Storage": {
+    "sync": "已同步"
+  }
+}

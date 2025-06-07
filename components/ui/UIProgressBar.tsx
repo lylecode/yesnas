@@ -1,9 +1,10 @@
-"use client";
+'use client';
 
-const data = [
-  { name: "进度", value: 75 }, // 75% 进度
-];
+import { Progress } from '@heroui/react';
 
-export const UIProgressBar = () => {
-  return <div className="h-1 w-full bg-gray-600"></div>;
+interface Props {
+  value: number;
+}
+export const UIProgressBar = ({ value }: Props) => {
+  return <Progress aria-label="Loading..." className="max-w-md" value={value} size="sm" />;
 };
