@@ -14,7 +14,7 @@ interface Props {
 
 const DiskCard = ({ diskInfo, status, checked, onCheck, className }: Props) => {
   const renderDiskIcon = () => {
-    return diskInfo.path.startsWith('nvme') ? <BsNvme className="text-2xl" /> : <BsDeviceHdd className="text-2xl" />;
+    return diskInfo.path.startsWith('nvme') ? <BsNvme /> : <BsDeviceHdd />;
   };
   const DiskInfoItem = ({ label, value }: { label: string; value: React.ReactNode }) => (
     <div className="flex flex-1 flex-col items-center gap-1">
@@ -39,6 +39,7 @@ const DiskCard = ({ diskInfo, status, checked, onCheck, className }: Props) => {
       </div>
 
       <div className="flex items-center gap-2 border-b border-b-gray-200 pb-3 text-sm">
+        {/* <div className="text-4xl">{renderDiskIcon()}</div> */}
         <span
           className={cn(
             'rounded px-2 py-1 text-xs text-white',
@@ -46,28 +47,22 @@ const DiskCard = ({ diskInfo, status, checked, onCheck, className }: Props) => {
           )}>
           {diskInfo.type === 'sys' ? '系统盘' : '数据盘'}
         </span>
-        <div className="flex items-center gap-2 overflow-hidden">
-          <span className="truncate font-medium">{diskInfo.model}</span>
-          <span className="text-gray-400">/</span>
-          <span className="truncate text-gray-600">{diskInfo.serial}</span>
+        <div className="flex flex-col overflow-hidden">
+          <div className="flex gap-2">
+            <span className="truncate text-base font-medium">{diskInfo.model}</span>
+          </div>
+          <span className="truncate text-gray-600">SN:{diskInfo.serial}</span>
         </div>
       </div>
 
-      <div className="flex items-center gap-3 p-3 text-sm">
-        <span className="flex flex-col rounded-full p-3">
-          {renderDiskIcon()}
-          {diskInfo.name}
-        </span>
-
+      <div className="flex items-center gap-3 p-1 text-sm">
+        <DiskInfoItem label="设备" value={diskInfo.name} />
         <div className="h-full w-px bg-gray-200" />
 
         <DiskInfoItem label="总容量" value={diskInfo.size} />
         <div className="h-full w-px bg-gray-200" />
 
         <DiskInfoItem label="温度" value={diskInfo.temperature ? `${diskInfo.temperature}°C` : null} />
-        <div className="h-full w-px bg-gray-200" />
-
-        <DiskInfoItem label="存储空间" value="-" />
         <div className="h-full w-px bg-gray-200" />
 
         <DiskInfoItem
